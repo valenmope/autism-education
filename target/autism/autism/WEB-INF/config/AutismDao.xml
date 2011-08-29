@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="jedisConnectionFactory"
+		class="org.springframework.data.keyvalue.redis.connection.jedis.JedisConnectionFactory">
+		<property name="hostName" value="localhost" />
+		<property name="port" value="6379" />
+		<property name="timeout" value="2000" />
+		<property name="pooling" value="false" />
+	</bean>
+
+	<bean id="redisTemplate"
+		class="org.springframework.data.keyvalue.redis.core.RedisTemplate">
+		<property name="connectionFactory" ref="jedisConnectionFactory" />
+		<property name="exposeConnection" value="true" />
+		<property name="hashKeySerializer">
+			<bean
+				class="org.springframework.data.keyvalue.redis.serializer.StringRedisSerializer" />
+		</property>
+		<property name="keySerializer">
+			<bean
+				class="org.springframework.data.keyvalue.redis.serializer.StringRedisSerializer" />
+		</property>
+	</bean>
+
+	<bean name="atomicInteger"
+		class="org.springframework.data.keyvalue.redis.support.atomic.RedisAtomicInteger">
+		<constructor-arg name="redisCounter" value="atInt" />
+		<constructor-arg name="operations" ref="redisTemplate" />
+		<constructor-arg name="initialValue" value="0" />
+	</bean>
+	<bean name="redisList"
+		class="org.springframework.data.keyvalue.redis.support.collections.DefaultRedisList">
+		<constructor-arg index="0" type="java.lang.String"
+			value="redList" />
+		<constructor-arg name="operations" ref="redisTemplate" />
+	</bean>
+	<bean name="redisMap"
+		class="org.springframework.data.keyvalue.redis.support.collections.DefaultRedisMap">
+		<constructor-arg index="0" type="java.lang.String"
+			value="redMap" />
+		<constructor-arg name="operations" ref="redisTemplate" />
+	</bean>
+	<bean name="redisSet"
+		class="org.springframework.data.keyvalue.redis.support.collections.DefaultRedisZSet">
+		<constructor-arg index="0" type="java.lang.String"
+			value="redZSet" />
+		<constructor-arg name="operations" ref="redisTemplate" />
+	</bean>
+
+</beans>
