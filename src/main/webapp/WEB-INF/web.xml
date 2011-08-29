@@ -8,7 +8,7 @@ Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>AutismContext.xml</param-value>
+		<param-value>/WEB-INF/config/AutismContext.xml</param-value>
 	</context-param>
 
 	<listener>
