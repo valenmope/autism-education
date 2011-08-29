@@ -2,3 +2,9 @@
 
 This project was created by Raul Muñoz and Valentín Moreno together with Universidad Carlos III de Madrid Spain, in order to get our final project degree
 
+
+http://static.springsource.org/spring-data/data-redis/docs/current/reference/redis.html
+http://java.dzone.com/articles/creating-an-application-using-spring-data-with-redis-as-datastore-part-1  --> ejemplo spring data
+http://blog.springsource.com/2011/04/27/getting-started-redis-spring-cloud-foundry/  --> twitter en cloudfoundry
+http://blog.springsource.com/2009/12/02/obtaining-spring-3-artifacts-with-maven/ --> spring mas maven
+
